@@ -1,19 +1,19 @@
 {
-  "name": "master",
+  "name": "module-main",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open",
+    "start": "concurrently npm:serve:*",
+    "serve:main": "vue-cli-service serve --open",
     "serve:basic": "cd ../module-basic && npm run serve",
     "serve:report": "cd ../module-report && npm run serve",
-    "start": "concurrently \"npm run serve\" \"npm run serve:basic\" \"npm run serve:report\"",
-    "build": "vue-cli-service build",
+    "start-build": "concurrently npm:build:*",
+    "build:main": "vue-cli-service build",
     "build:basic": "cd ../module-basic && npm run build",
     "build:report": "cd ../module-report && npm run build",
-    "build:all": "concurrently \"npm run build\" \"npm run build:basic\" \"npm run build:report\"",
+    "start-install": "concurrently npm:install:*",
     "install:basic": "cd ../module-basic && npm install",
     "install:report": "cd ../module-report && npm install",
-    "install:all": "concurrently \"npm run install:basic\" \"npm run install:report\" \"npm install\"",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -26,8 +26,7 @@
     "rxjs": "^6.5.4",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",
-    "vuex": "^3.1.2",
-    "wl-tree-transfer": "^1.0.2"
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
