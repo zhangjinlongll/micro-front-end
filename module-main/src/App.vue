@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import TheMenu from "@/components/TheMenu.vue";
-import TheNav from "@/components/TheNav.vue";
+import TheMenu from '@/components/TheMenu.vue'
+import TheNav from '@/components/TheNav.vue'
 
 export default {
-  name: "rootView",
+  name: 'rootView',
   components: {
     TheMenu,
     TheNav
@@ -31,7 +31,7 @@ export default {
     loading: Boolean,
     content: String
   }
-};
+}
 </script>
 
 <style lang="scss">

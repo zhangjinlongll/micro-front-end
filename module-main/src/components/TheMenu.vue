@@ -26,17 +26,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"; // 引入状态共享
-import { routerGo } from "@/library/js/util.js"; // 引入跨应用路由跳转
+import { mapGetters } from 'vuex' // 引入状态共享
+import { routerGo } from '@/library/js/util.js' // 引入跨应用路由跳转
 import {
   menu_background,
   menu_color,
   menu_active_color
-} from "@/style/variables.scss.js"; // 导入菜单样式变量
+} from '@/style/variables.scss.js' // 导入菜单样式变量
 
 export default {
-  name: "theMenu",
-  data() {
+  name: 'theMenu',
+  data () {
     return {
       theme_menu: {
         background: menu_background,
@@ -45,63 +45,63 @@ export default {
       }, // 菜单主题
       menu_data: [
         {
-          id: "1",
-          title: "wl-ui组件",
-          icon: "el-icon-monitor",
-          module: "subapp-ui",
+          id: '1',
+          title: 'wl-ui组件',
+          icon: 'el-icon-monitor',
+          module: 'subapp-ui',
           children: [
             {
-              id: "1-1",
-              title: "表格",
-              url: "/ui"
+              id: '1-1',
+              title: '表格',
+              url: '/ui'
             },
             {
-              id: "1-2",
-              title: "日历",
-              url: "/ui/about"
+              id: '1-2',
+              title: '日历',
+              url: '/ui/about'
             }
           ]
         },
         {
-          id: "2",
-          title: "博客",
-          icon: "el-icon-date",
-          module: "subapp-blog",
+          id: '2',
+          title: '博客',
+          icon: 'el-icon-date',
+          module: 'subapp-blog',
           children: [
             {
-              id: "2-1",
-              title: "报表",
-              url: "/blog"
+              id: '2-1',
+              title: '报表',
+              url: '/blog'
             },
             {
-              id: "2-2",
-              title: "穿梭框",
-              url: "/blog/about"
+              id: '2-2',
+              title: '穿梭框',
+              url: '/blog/about'
             }
           ]
         }
       ] // 菜单数据
-    };
+    }
   },
   computed: {
     // 左侧菜单主题
-    themeMenu() {
-      return this.theme_menu;
+    themeMenu () {
+      return this.theme_menu
     },
     // 左侧菜单默认展开
-    menuDefaultOpeneds() {
-      return this.menu_data.map(i => i.id);
+    menuDefaultOpeneds () {
+      return this.menu_data.map(i => i.id)
     },
     // 导入vuex菜单数据，菜单折叠状态
-    ...mapGetters(["menu", "is_collapse"])
+    ...mapGetters(['menu', 'is_collapse'])
   },
   methods: {
     // 跨应用路由跳转
-    goto(title, href) {
-      routerGo(href, title);
+    goto (title, href) {
+      routerGo(href, title)
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

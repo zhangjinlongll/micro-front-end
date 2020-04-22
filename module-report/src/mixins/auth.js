@@ -7,24 +7,24 @@
  * 请注意_matchingOwner函数已被权限校验模块占用
  */
 const permissionCheck = {
-  data() {
+  data () {
     return {
-      _owner: [], // 当前路由权限码数组
+      _owner: [] // 当前路由权限码数组
     }
   },
-  created() {
-    let _purview_array = this.$route.meta.purview || [];
-    this._owner = _purview_array.map(item => item.Code);
+  created () {
+    let _purview_array = this.$route.meta.purview || []
+    this._owner = _purview_array.map(item => item.Code)
   },
   methods: {
     /**
      * 校验当前路由是否有所传权限码代表的权限
      * @param {*} auth 权限码
      */
-    _matchingOwner(auth) {
-      return this._owner.some(item => item === auth);
+    _matchingOwner (auth) {
+      return this._owner.some(item => item === auth)
     }
   }
 }
 
-export default permissionCheck;
+export default permissionCheck

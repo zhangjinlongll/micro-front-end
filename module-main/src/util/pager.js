@@ -4,9 +4,9 @@
  * des: 尝试使用rxjs解决应用间通信问题
  */
 // import store from "@/store/pagers";
-import { Subject } from "rxjs";
+import { Subject } from 'rxjs'
 // import { startWith } from "rxjs/operators";
-const pager = new Subject();
+const pager = new Subject()
 
 /* const observable = Observable.create(observer => {
   observer.next(store.state);
@@ -36,7 +36,4 @@ observable.subscribe({
 
 const pager = new Pager(); */
 
-
-
-export default pager;
-
+export default pager

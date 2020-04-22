@@ -7,12 +7,12 @@
 
 <script>
 // @ is an alias to /src
-import WlForm from "@/components/wl-form.vue";
+import WlForm from '@/components/wl-form.vue'
 
 export default {
-  name: "report-home",
+  name: 'report-home',
   components: {
     WlForm
   }
-};
+}
 </script>

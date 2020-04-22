@@ -5,21 +5,21 @@ export default {
   },
   mutations: {
     // 设置父应用信息
-    SET_MSG_VALUE(state, data) {
-      state.msg = data;
+    SET_MSG_VALUE (state, data) {
+      state.msg = data
     },
     // 设置父应用token
-    SET_TOKEN(state, data) {
-      state.token = data;
+    SET_TOKEN (state, data) {
+      state.token = data
     }
   },
   actions: {
     // 设置父应用信息
-    changeMsg({ commit }, data) {
+    changeMsg ({ commit }, data) {
       commit('SET_MSG_VALUE', data)
     },
     // 设置父应用token
-    changeToken({ commit }, data) {
+    changeToken ({ commit }, data) {
       commit('SET_TOKEN', data)
     }
   }

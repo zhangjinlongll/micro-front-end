@@ -24,56 +24,56 @@
 
 <script>
 export default {
-  name: "theNav",
-  data() {
+  name: 'theNav',
+  data () {
     return {
-      user_name: "Admin", // 名称 // 用户信息
+      user_name: 'Admin', // 名称 // 用户信息
       full_screen: false // 是否全屏
-    };
-  },
-  computed: {
-    isCollapse() {
-      return this.$store.getters.is_collapse;
     }
   },
-  create() {},
+  computed: {
+    isCollapse () {
+      return this.$store.getters.is_collapse
+    }
+  },
+  create () {},
   methods: {
     // 设置左侧菜单折叠状态
-    setMenuCollapseStatus() {
-      this.$store.dispatch("menu/setCollapseStatus", !this.isCollapse);
+    setMenuCollapseStatus () {
+      this.$store.dispatch('menu/setCollapseStatus', !this.isCollapse)
     },
     // 全屏操作
-    handleFullScreen() {
-      let element = document.documentElement;
+    handleFullScreen () {
+      const element = document.documentElement
       if (this.full_screen) {
         if (document.exitFullscreen) {
-          document.exitFullscreen();
+          document.exitFullscreen()
         } else if (document.webkitCancelFullScreen) {
-          document.webkitCancelFullScreen();
+          document.webkitCancelFullScreen()
         } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
+          document.mozCancelFullScreen()
         } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
+          document.msExitFullscreen()
         }
       } else {
         if (element.requestFullscreen) {
-          element.requestFullscreen();
+          element.requestFullscreen()
         } else if (element.webkitRequestFullScreen) {
-          element.webkitRequestFullScreen();
+          element.webkitRequestFullScreen()
         } else if (element.mozRequestFullScreen) {
-          element.mozRequestFullScreen();
+          element.mozRequestFullScreen()
         } else if (element.msRequestFullscreen) {
-          element.msRequestFullscreen();
+          element.msRequestFullscreen()
         }
       }
-      this.full_screen = !this.full_screen;
+      this.full_screen = !this.full_screen
     },
     // 暂未开通，敬请期待
-    notYetOpened() {
-      this.$message({});
+    notYetOpened () {
+      this.$message({})
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

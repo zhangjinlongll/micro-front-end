@@ -14,17 +14,17 @@
 </template>
 
 <script>
-import WlTable from "@/components/wl-table.vue";
+import WlTable from '@/components/wl-table.vue'
 
 export default {
-  name: "basic-home",
+  name: 'basic-home',
   components: { WlTable },
-  data() {
+  data () {
     return {
       layout: {
         fadein: false
       }
-    };
+    }
   }
-};
+}
 </script>

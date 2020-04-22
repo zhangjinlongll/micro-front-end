@@ -24,47 +24,47 @@
 
 <script>
 export default {
-  name: "basic-app",
+  name: 'basic-app',
   props: {
     msg: String
   },
-  data() {
+  data () {
     return {
-      myMsg: ""
-    };
+      myMsg: ''
+    }
   },
-  created() {
-    this.myMsg = this.msg;
+  created () {
+    this.myMsg = this.msg
   },
   methods: {
     /**
      * 路由切换
      * url 路由地址
      */
-    routerChange(url) {
+    routerChange (url) {
       this.$router.push(url).catch(err => {
-        console.log(err);
-      });
+        console.log(err)
+      })
     },
     /**
      * 跨应用路由切换
      * url 路由地址
      */
-    toAppReport(url) {
-      this.$mainUtils.routerGo(url);
+    toAppReport (url) {
+      this.$mainUtils.routerGo(url)
     },
     /**
      * 通知父应用变天了
      */
-    callParentChange() {
-      this.myMsg = "但若不见你，阳光也无趣";
+    callParentChange () {
+      this.myMsg = '但若不见你，阳光也无趣'
       this.$pager.next({
-        from: "subapp-ui",
-        token: "但若不见你，阳光也无趣"
-      });
+        from: 'subapp-ui',
+        token: '但若不见你，阳光也无趣'
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

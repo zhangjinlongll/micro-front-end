@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import WlCalendar from "@/components/wl-calendar.vue";
+import WlCalendar from '@/components/wl-calendar.vue'
 
 export default {
-  name: "basic-calendar",
+  name: 'basic-calendar',
   components: { WlCalendar }
-};
+}
 </script>

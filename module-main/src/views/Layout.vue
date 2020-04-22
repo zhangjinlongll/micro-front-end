@@ -99,35 +99,35 @@
 
 <script>
 // keepalive
-import Sidebar from "./SideBar";
-import Topbar from "./TopBar";
-import Tagbar from "./TagBar";
-import { mapActions, mapGetters } from "vuex";
-import debounce from "lodash/debounce";
-import { cacheHelper } from "@public/utils/cacheHelper";
+import Sidebar from './SideBar'
+import Topbar from './TopBar'
+import Tagbar from './TagBar'
+import { mapActions, mapGetters } from 'vuex'
+import debounce from 'lodash/debounce'
+import { cacheHelper } from '@public/utils/cacheHelper'
 export default {
-  name: "Layout",
+  name: 'Layout',
   components: {
     Sidebar,
     Topbar,
     Tagbar
   },
-  data() {
+  data () {
     return {
       isCollapse: false,
       calcHeight: 169,
       restHeight: 0,
       clientHeight: 1080,
-      platformId: "",
+      platformId: '',
       contentStorage: {},
-      contentNow: ""
-    };
+      contentNow: ''
+    }
   },
   props: {
     isChildApp: {
       type: Boolean,
-      default() {
-        return false;
+      default () {
+        return false
       }
     },
     // loading: Boolean,
@@ -136,156 +136,156 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "user"
+      user: 'user'
     }),
     // 是否首页（唯一首页，非子系统的首页）
-    isNotIndex() {
-      return this.$route.name !== "index";
+    isNotIndex () {
+      return this.$route.name !== 'index'
     },
     ...mapGetters({
-      tableHeight: "tableHeight",
-      cachedViews: "tags/cachedViews"
+      tableHeight: 'tableHeight',
+      cachedViews: 'tags/cachedViews'
     }),
-    isNoBg() {
-      const routeName = this.$route.name;
+    isNoBg () {
+      const routeName = this.$route.name
       return (
-        routeName === "addWaybill" ||
-        routeName === "problemParcelDispose" ||
-        routeName === "problemParcelDisposeDetail"
-      );
+        routeName === 'addWaybill' ||
+        routeName === 'problemParcelDispose' ||
+        routeName === 'problemParcelDisposeDetail'
+      )
     },
     // 获取当前标题
-    title() {
-      const title = this.$route.meta.title || this.$route.meta.name;
-      return title ? "JMS-" + this.$lang(title) : "JMS";
+    title () {
+      const title = this.$route.meta.title || this.$route.meta.name
+      return title ? 'JMS-' + this.$lang(title) : 'JMS'
     }
   },
   watch: {
-    $route(to, from) {
-      if (to.name === "login" || to.path === "path" || to.name === "index") {
-        this.isCollapse = false;
+    $route (to, from) {
+      if (to.name === 'login' || to.path === 'path' || to.name === 'index') {
+        this.isCollapse = false
       }
       // 设置标题
       console.log(
-        "gateway layout $route(to, from)",
+        'gateway layout $route(to, from)',
         to,
-        to.path.match("/app/")
-      );
-      this.UPDATE_ACTIVE_ROUTE(to.name);
+        to.path.match('/app/')
+      )
+      this.UPDATE_ACTIVE_ROUTE(to.name)
       this.$nextTick(() => {
-        this.calcTableHeight();
-      });
+        this.calcTableHeight()
+      })
     },
     content: {
-      handler(val, oldVal) {
+      handler (val, oldVal) {
         console.log(
-          "content1",
+          'content1',
           window.location.pathname,
           this.content,
           this.contentStorage
-        );
-        const systemName = window.location.pathname.split("/")[2];
+        )
+        const systemName = window.location.pathname.split('/')[2]
         // systemName = systemName || window.location.pathname //  如果是根路径“/”
         //  缓存第一次
         if (systemName && !this.contentStorage[systemName]) {
-          this.$set(this.contentStorage, systemName, this.content);
+          this.$set(this.contentStorage, systemName, this.content)
         }
         console.log(
-          "content2",
+          'content2',
           window.location.pathname,
           this.content,
           this.contentStorage
-        );
+        )
       },
       immediate: true
     }
   },
-  created() {
-    window.contentStorage = [];
-    const userInfo = this.user || {};
-    let text = userInfo.name;
-    text += userInfo.staffNo ? "-" + userInfo.staffNo : "";
-    text += userInfo.loginTime ? "-" + userInfo.loginTime.substr(0, 10) : "";
-    this.watermark({ text });
+  created () {
+    window.contentStorage = []
+    const userInfo = this.user || {}
+    let text = userInfo.name
+    text += userInfo.staffNo ? '-' + userInfo.staffNo : ''
+    text += userInfo.loginTime ? '-' + userInfo.loginTime.substr(0, 10) : ''
+    this.watermark({ text })
   },
-  mounted() {
-    console.log("this.isCollapse", this.isCollapse);
+  mounted () {
+    console.log('this.isCollapse', this.isCollapse)
     this.$nextTick(() => {
-      this.calcTableHeight();
+      this.calcTableHeight()
       // 绑定窗口resize事件
-      const fn = debounce(this.calcTableHeight, 200); // 表格高度计算防抖
-      window.addEventListener("resize", fn, false);
+      const fn = debounce(this.calcTableHeight, 200) // 表格高度计算防抖
+      window.addEventListener('resize', fn, false)
       // 触发destroyed钩子，移除resize的监听事件
-      this.$once("hook:destroyed", () => {
+      this.$once('hook:destroyed', () => {
         window.removeEventListener(
-          "resize",
+          'resize',
           debounce(this.calcTableHeight, 200),
           false
-        );
-      });
-    });
+        )
+      })
+    })
     // cacheHelper.getMaximun()
-    cacheHelper.getUsage();
+    cacheHelper.getUsage()
     // 监听高度重算事件
-    this.$bus.$on("doLayout", () => {
-      this.$nextTick(() => this.calcTableHeight());
-    });
+    this.$bus.$on('doLayout', () => {
+      this.$nextTick(() => this.calcTableHeight())
+    })
   },
-  beforeRouteLeave(to, from, next) {
-    this.$bus.$off("doLayout");
-    next();
+  beforeRouteLeave (to, from, next) {
+    this.$bus.$off('doLayout')
+    next()
   },
-  destroyed() {
+  destroyed () {
     // 清除定时任务/绑定事件/eventBus事件
     // window.removeEventListener('resize', debounce(this.calcTableHeight, 200), false)
-    this.$bus.$off("doLayout");
+    this.$bus.$off('doLayout')
   },
   methods: {
     ...mapActions({
-      setCollapse: "setCollapse",
-      setTableHeight: "setTableHeight",
-      UPDATE_ACTIVE_ROUTE: "tags/UPDATE_ACTIVE_ROUTE"
+      setCollapse: 'setCollapse',
+      setTableHeight: 'setTableHeight',
+      UPDATE_ACTIVE_ROUTE: 'tags/UPDATE_ACTIVE_ROUTE'
     }),
-    changeCollapse(value) {
+    changeCollapse (value) {
       // @defect 子系统接收不到了
-      this.isCollapse = value;
+      this.isCollapse = value
     },
-    handleCollapse() {
-      this.isCollapse = !this.isCollapse;
-      this.$bus.$emit("toggleCollapse", this.isCollapse);
+    handleCollapse () {
+      this.isCollapse = !this.isCollapse
+      this.$bus.$emit('toggleCollapse', this.isCollapse)
     },
     // 计算元素的高度用于表格自适应
-    getRestHeight() {
+    getRestHeight () {
       const arr = [
-        "Title",
-        "Search",
-        "Pagination",
-        "Menu",
-        "Tip",
-        "SearchExtend"
-      ];
-      let height = 0;
-      arr.forEach(function(id) {
-        const els = document.querySelectorAll("#jms" + id);
+        'Title',
+        'Search',
+        'Pagination',
+        'Menu',
+        'Tip',
+        'SearchExtend'
+      ]
+      let height = 0
+      arr.forEach(function (id) {
+        const els = document.querySelectorAll('#jms' + id)
         els.forEach(item => {
           // console.log(item.id + ':', item.clientHeight);
           if (item.offsetParent !== null) {
-            height += item.clientHeight;
+            height += item.clientHeight
           }
-        });
-      });
-      return height;
+        })
+      })
+      return height
     },
-    calcTableHeight() {
-      this.clientHeight = document.documentElement.clientHeight;
-      this.restHeight = this.getRestHeight();
-      let tableHeight = this.clientHeight - this.restHeight - this.calcHeight;
-      tableHeight = tableHeight * window.devicePixelRatio;
-      console.log(tableHeight);
-      this.setTableHeight(tableHeight);
+    calcTableHeight () {
+      this.clientHeight = document.documentElement.clientHeight
+      this.restHeight = this.getRestHeight()
+      let tableHeight = this.clientHeight - this.restHeight - this.calcHeight
+      tableHeight = tableHeight * window.devicePixelRatio
+      console.log(tableHeight)
+      this.setTableHeight(tableHeight)
     }
   }
-};
+}
 </script>
 <style lang="scss" rel="text/css" scoped>
 .no-bg {
