@@ -36,7 +36,7 @@ export default {
     menuList: {
       type: Array,
       default: () => []
-    }, // 使用内置菜单样式是，菜单列表
+    } // 使用内置菜单样式是，菜单列表
   },
   computed: {
     flag: {
@@ -61,8 +61,8 @@ export default {
   },
   methods: {
     // 菜单点击事件
-    handleMenuItem(item){
-      this.$emit("rowClick", item)
+    handleMenuItem (item) {
+      this.$emit('rowClick', item)
     },
     watchContextmenu (event) {
       if (!this.$el.contains(event.target) || event.button !== 0) this.flag = false

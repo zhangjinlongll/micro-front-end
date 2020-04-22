@@ -9,20 +9,20 @@
  * @param {*} key 键名
  * @param {*} value 值
  */
-function sessionSet(key, value) {
-  sessionStorage.setItem(key, JSON.stringify(value));
+function sessionSet (key, value) {
+  sessionStorage.setItem(key, JSON.stringify(value))
 }
 
 /**
  * 会话存储-取
  * @param {*} key 键名
  */
-function sessionGet(key) {
-  let _data = sessionStorage.getItem(key);
+function sessionGet (key) {
+  let _data = sessionStorage.getItem(key)
   try {
     return JSON.parse(_data)
   } catch (e) {
-    return _data;
+    return _data
   }
 }
 
@@ -30,15 +30,15 @@ function sessionGet(key) {
  * 会话存储-删
  * @param {*} key 键名
  */
-function sessionDel(key) {
+function sessionDel (key) {
   sessionStorage.removeItem(key)
 }
 
 /**
  * 会话存储-删处全部
  */
-function sessionClear() {
-  sessionStorage.clear();
+function sessionClear () {
+  sessionStorage.clear()
 }
 
 /**
@@ -46,20 +46,20 @@ function sessionClear() {
  * @param {*} key 键名
  * @param {*} value 值
  */
-function localSet(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+function localSet (key, value) {
+  localStorage.setItem(key, JSON.stringify(value))
 }
 
 /**
  * 永久存储-取
  * @param {*} key 键名
  */
-function localGet(key) {
-  let _data = localStorage.getItem(key);
+function localGet (key) {
+  let _data = localStorage.getItem(key)
   try {
     return JSON.parse(_data)
   } catch (e) {
-    return _data;
+    return _data
   }
 }
 
@@ -67,7 +67,7 @@ function localGet(key) {
  * 永久存储-删
  * @param {*} key 键名
  */
-function localDel(key) {
+function localDel (key) {
   localStorage.removeItem(key)
 }
 

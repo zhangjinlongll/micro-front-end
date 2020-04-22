@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: "wl-fadein",
+  name: 'wl-fadein',
   props: {
     // 是否显示
     show: {
@@ -36,7 +36,7 @@ export default {
     // 自定义main的class
     ftBodyClass: [String, Function]
   }
-};
+}
 </script>
 
 <style lang="scss">
