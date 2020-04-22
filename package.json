@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "init": "node config/install.js",
-    "cinit": "node config/c-install.js",
-    "serve": "node config/start.js",
-    "build": "node config/build.js",
-    "lint": "vue-cli-service lint"
+    "start": "concurrently npm:serve:*",
+    "serve:main": "cd module-main && npm run serve --open",
+    "serve:basic": "cd module-basic && npm run serve",
+    "serve:report": "cd module-report && npm run serve",
+    "start-build": "concurrently npm:build:*",
+    "build:main": "cd module-main && npm run build",
+    "build:basic": "cd module-basic && npm run build",
+    "build:report": "cd module-report && npm run build",
+    "start-install": "concurrently npm:install:*",
+    "install:basic": "cd module-basic && npm install",
+    "install:report": "cd module-report && npm install"
+  },
+  "dependencies": {
+    "concurrently": "^5.1.0"
   }
 }
